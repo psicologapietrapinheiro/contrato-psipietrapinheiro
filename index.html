@@ -858,15 +858,33 @@
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    const el = document.createElement('div');
-    el.innerHTML = html;
-    el.style.position = 'absolute';
-    el.style.left = '-9999px';
-    document.body.appendChild(el);
+   const el = document.createElement('div');
+el.innerHTML = html;
+el.style.position = 'fixed';
+el.style.left = '0';
+el.style.top = '0';
+el.style.width = '210mm';
+el.style.background = '#ffffff';
+el.style.opacity = '0.01';
+el.style.pointerEvents = 'none';
+el.style.zIndex = '-1';
+document.body.appendChild(el);
 
-    html2pdf().set(opt).from(el.querySelector('body')).save().then(() => {
-      document.body.removeChild(el);
-    });
+if (typeof html2pdf === 'undefined') {
+  document.body.removeChild(el);
+  alert('Não foi possível carregar a biblioteca de PDF. Verifique a conexão com a internet e tente novamente.');
+  return;
+}
+
+html2pdf().set(opt).from(el).save()
+  .then(() => {
+    document.body.removeChild(el);
+  })
+  .catch((error) => {
+    document.body.removeChild(el);
+    console.error('Erro ao gerar PDF:', error);
+    alert('Não foi possível gerar o PDF. Tente novamente ou use a opção de imprimir/salvar como PDF do navegador.');
+  });
   }
 </script>
 </body>
