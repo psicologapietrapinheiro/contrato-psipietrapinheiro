@@ -771,119 +771,131 @@
     const sigImg = sigData ? `<img src="${sigData}" style="max-width:320px;height:80px;border:1px solid #ccc;border-radius:6px;display:block;">` : '<div style="border-bottom:2px solid #333;width:320px;height:60px;"></div>';
 
     const html = `
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
 <style>
-  body { font-family: 'Georgia', serif; color: #2a2a2a; margin: 40px; font-size: 12px; line-height: 1.7; }
-  h1 { font-size: 18px; color: #196F8F; margin-bottom: 6px; }
-  h2 { font-size: 13px; background: #196F8F; color: white; padding: 6px 12px; border-radius: 4px; margin: 20px 0 8px; }
-  .logo { display:flex; align-items:center; gap:12px; margin-bottom:24px; border-bottom:3px solid #D67599; padding-bottom:16px; }
-  .pLetter { font-size:48px; font-family:Georgia,serif; font-weight:300; line-height:1; }
-  .brand { border-left:2px solid #ccc; padding-left:12px; }
-  .brand strong { font-size:17px; display:block; }
-  .brand small { font-size:10px; color:#666; }
-  ul { padding-left:18px; margin-bottom:10px; }
-  li { margin-bottom:6px; }
-  .field { border-bottom:1px solid #ccc; min-width:200px; display:inline-block; margin-right:20px; margin-bottom:4px; }
-  .check { color: #D67599; font-weight:700; }
-  .sig-area { margin-top:24px; }
-  .date { color:#888; font-size:11px; margin-top:4px; }
-</style></head><body>
-<div class="logo">
-  <div class="pLetter">P</div>
-  <div class="brand">
-    <strong>Pietra Pinheiro</strong>
-    <small>Psicóloga Cognitivo-Comportamental · CRP 06/215556</small>
+  .pdf-contract {
+    font-family: Georgia, serif;
+    color: #2a2a2a;
+    background: #ffffff;
+    font-size: 12px;
+    line-height: 1.7;
+    padding: 40px;
+    width: 190mm;
+  }
+
+  .pdf-contract h1 {
+    font-size: 18px;
+    color: #196F8F;
+    margin-bottom: 6px;
+  }
+
+  .pdf-contract h2 {
+    font-size: 13px;
+    background: #196F8F;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin: 20px 0 8px;
+  }
+
+  .pdf-contract ul {
+    padding-left: 18px;
+    margin-bottom: 10px;
+  }
+
+  .pdf-contract li {
+    margin-bottom: 6px;
+  }
+
+  .pdf-contract .field {
+    border-bottom: 1px solid #ccc;
+    min-width: 200px;
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 4px;
+  }
+
+  .pdf-contract .check {
+    color: #D67599;
+    font-weight: 700;
+  }
+
+  .pdf-contract .sig-area {
+    margin-top: 24px;
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+  }
+</style>
+
+<div class="pdf-contract">
+  <h1>Contrato de Prestação de Serviços Psicológicos</h1>
+  <p><strong>Psicóloga:</strong> Pietra Pinheiro · CRP 06/215556</p>
+
+  <h2>Dados do paciente</h2>
+  <p><strong>Nome:</strong> ${name}</p>
+  <p><strong>E-mail:</strong> ${email}</p>
+  <p><strong>CPF:</strong> ${cpf}</p>
+  <p><strong>Telefone:</strong> ${tel}</p>
+
+  <!-- aqui continua TODO o conteúdo do contrato, mas sem <html>, <head> e <body> -->
+
+  <h2>Declaração Final e Assinatura</h2>
+  <p><span class="check">☑</span> Declaro que li e compreendi integralmente as informações, políticas de trabalho e normas éticas descritas neste contrato, concordando com os termos estabelecidos para a prestação de serviços psicológicos.</p>
+
+  <div class="sig-area">
+    <p><strong>Assinatura digital:</strong></p>
+    ${sigImg}
+    <p style="margin-top:10px;"><strong>Nome:</strong> ${name}</p>
+    <p><strong>Data:</strong> ${date}</p>
   </div>
-</div>
-<h1>Contrato de Prestação de Serviços Psicológicos e Informações Iniciais</h1>
-<p class="date">Data: ${date}</p>
 
-<h2>Dados do Paciente</h2>
-<p><strong>Nome:</strong> ${document.getElementById('q2').value}</p>
-<p><strong>E-mail:</strong> ${document.getElementById('q1').value} / ${document.getElementById('q4').value}</p>
-<p><strong>CPF:</strong> ${document.getElementById('q3').value}</p>
-<p><strong>Telefone:</strong> ${document.getElementById('q5').value}</p>
-
-<h2>1. Proteção de Dados</h2>
-<p><span class="check">☑</span> Li, estou ciente e concordo com os termos de Proteção de Dados (LGPD – Lei nº 13.709/2018).</p>
-
-<h2>2. Confidencialidade e Ética</h2>
-<p>O conteúdo das sessões é estritamente confidencial, conforme o Código de Ética Profissional do Psicólogo e leis aplicáveis. O sigilo poderá ser quebrado apenas em situações de risco de vida para si ou para terceiros, ou por determinação judicial. As sessões poderão ser discutidas de forma anônima em supervisão clínica. É terminantemente proibida a gravação das sessões sem consentimento prévio e formal por escrito.</p>
-<p><span class="check">☑</span> Li e concordo com os termos de Confidencialidade e Ética.</p>
-
-<h2>3. Dinâmica do Processo Terapêutico</h2>
-<p>A primeira sessão possuirá caráter avaliativo. O processo incluirá análise das necessidades psicológicas e alinhamento de objetivos. A psicoterapia é colaborativa e exige engajamento ativo de ambas as partes.</p>
-<p><span class="check">☑</span> Li e concordo com os termos de Dinâmica do Processo Terapêutico.</p>
-
-<h2>4. Políticas de Agendamento e Cancelamento</h2>
-<p>Cancelamentos com menos de 24 horas de antecedência ou faltas sem aviso implicam na cobrança integral da sessão. Períodos de recesso devem ser comunicados com 15 dias de antecedência.</p>
-<p><span class="check">☑</span> Li e concordo com os termos de Agendamento e Cancelamento.</p>
-
-<h2>5. Valores e Pagamentos</h2>
-<p>O valor acordado por sessão é de R$ ${valorSessao}. Os pagamentos devem ser realizados até o dia ${diaPagamento} de cada mês ou após cada atendimento. O reajuste dos honorários ocorrerá anualmente. Documentos de rotina estão inclusos. Serviços adicionais serão alinhados caso a caso.</p>
-<p><span class="check">☑</span> Li e concordo com os termos de Valores e Pagamentos.</p>
-
-<h2>6. Comunicação e Urgências</h2>
-<p>Temas não-urgentes devem ser reservados para a sessão. Demandas administrativas via WhatsApp/e-mail em horário comercial. Emergências: pronto-socorro mais próximo, com comunicação posterior à terapeuta.</p>
-<p><span class="check">☑</span> Li e concordo com os termos de Comunicação e Urgências.</p>
-
-<h2>7. Preparação para Sessões On-line</h2>
-<p>Uso de fones de ouvido, ambiente privativo, conexão estável e cuidados de segurança digital.</p>
-<p><span class="check">☑</span> Li e concordo com os termos de preparação para as sessões on-line.</p>
-
-<h2>8. Encerramento (Alta)</h2>
-<p>O processo de alta será preferencialmente decidido em conjunto. Caso o paciente opte pela interrupção antes do planejado, compromete-se a comunicar com antecedência para sessão de encerramento.</p>
-<p><span class="check">☑</span> Li e concordo com os termos de Encerramento (Alta).</p>
-
-<h2>Declaração Final e Assinatura</h2>
-<p><span class="check">☑</span> Declaro que li e compreendi integralmente as informações, políticas de trabalho e normas éticas descritas neste contrato, concordando com os termos estabelecidos para a prestação de serviços psicológicos.</p>
-
-<div class="sig-area">
-  <p><strong>Assinatura digital:</strong></p>
-  ${sigImg}
-  <p style="margin-top:10px;"><strong>Nome:</strong> ${name}</p>
-  <p><strong>Data:</strong> ${date}</p>
-</div>
-
-<p style="margin-top:30px;font-size:10px;color:#999;border-top:1px solid #eee;padding-top:10px;">
-  Psicóloga Pietra Pinheiro · CRP 06/215556 · psicologapietrapinheiro@gmail.com · WhatsApp (11) 93911-1777
-</p>
-</body></html>`;
+  <p style="margin-top:30px;font-size:10px;color:#999;border-top:1px solid #eee;padding-top:10px;">
+    Psicóloga Pietra Pinheiro · CRP 06/215556 · psicologapietrapinheiro@gmail.com · WhatsApp (11) 93911-1777
+  </p>
+</div>`;
 
     const opt = {
-      margin: [10, 10, 10, 10],
-      filename: `Contrato_Psicologico_${name.split(' ')[0]}_${date.replace(/\//g,'-')}.pdf`,
-      image: { type: 'jpeg', quality: 0.95 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+  margin: [10, 10, 10, 10],
+  filename: `Contrato_Psicologico_${name.split(' ')[0]}_${date.replace(/\//g,'-')}.pdf`,
+  image: { type: 'jpeg', quality: 0.98 },
+  html2canvas: {
+    scale: 2,
+    useCORS: true,
+    backgroundColor: '#ffffff'
+  },
+  jsPDF: {
+    unit: 'mm',
+    format: 'a4',
+    orientation: 'portrait'
+  },
+  pagebreak: {
+    mode: ['css', 'legacy']
+  }
+};
 
-   const el = document.createElement('div');
+const el = document.createElement('div');
 el.innerHTML = html;
-el.style.position = 'fixed';
+
+el.style.position = 'absolute';
 el.style.left = '0';
 el.style.top = '0';
 el.style.width = '210mm';
 el.style.background = '#ffffff';
-el.style.opacity = '0.01';
-el.style.pointerEvents = 'none';
-el.style.zIndex = '-1';
+el.style.zIndex = '99999';
+
 document.body.appendChild(el);
 
-if (typeof html2pdf === 'undefined') {
-  document.body.removeChild(el);
-  alert('Não foi possível carregar a biblioteca de PDF. Verifique a conexão com a internet e tente novamente.');
-  return;
-}
-
-html2pdf().set(opt).from(el).save()
+html2pdf()
+  .set(opt)
+  .from(el)
+  .save()
   .then(() => {
     document.body.removeChild(el);
   })
   .catch((error) => {
     document.body.removeChild(el);
     console.error('Erro ao gerar PDF:', error);
-    alert('Não foi possível gerar o PDF. Tente novamente ou use a opção de imprimir/salvar como PDF do navegador.');
+    alert('Não foi possível gerar o PDF. Tente novamente.');
   });
   }
 </script>
