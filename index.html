@@ -887,7 +887,7 @@ document.body.appendChild(el);
 
 html2pdf()
   .set(opt)
-  .from(el)
+  .from(el.querySelector('body'))
   .save()
   .then(() => {
     document.body.removeChild(el);
