@@ -670,7 +670,7 @@
 
   // -- SUBMIT -------------------------------------
   function submitForm() {
-    const required = ['q1','q2','q3','q4','q5','valor_sessao','dia_pagamento'];
+    const required = ['q1','q2','q3','q4','q5','valor_sessao'];
     const checks = ['q6','q7','q8','q9','q10','q11','q12','q13','q14'];
     let ok = true;
 
@@ -703,7 +703,6 @@
     const cpf          = document.getElementById('q3').value || '';
     const tel          = document.getElementById('q5').value || '';
     const valorSessao  = document.getElementById('valor_sessao').value || '[nao informado]';
-    const diaPagamento = document.getElementById('dia_pagamento').value || '[nao informado]';
     const date         = new Date().toLocaleDateString('pt-BR');
     const firstName    = name.split(' ')[0] || 'Paciente';
     const safeName     = firstName.replace(/[^a-zA-Z0-9]/g, '_');
@@ -872,7 +871,7 @@
       sectionBar('7', 'Valores e Pagamentos');
       writeMixed('Investimento:', 'O valor acordado por sessao e de R$ ' + valorSessao + '.', 3);
       y += 1;
-      writeMixed('Forma de Pagamento:', 'Os pagamentos deverao ser realizados de forma antecipada as sessoes. No caso de atendimento avulso, o pagamento devera ser realizado com antecedencia minima de 24 horas em relacao ao horario agendado. Em caso de adesao ao pacote mensal, os pagamentos devem ser realizados ate o dia ' + diaPagamento + ' de cada mes, conforme previamente combinado entre psicologa e paciente.', 3);
+      writeMixed('Forma de Pagamento:', 'Os pagamentos deverao ser realizados antecipadamente as sessoes, com antecedencia minima de 24 horas em relacao ao horario agendado. No caso de adesao ao pacote, o pagamento devera ser realizado antecipadamente as sessoes correspondentes ao periodo contratado, devendo estar integralmente quitado antes da primeira sessao de cada mes. Para cada periodo mensal, antes do inicio do mes correspondente ao pacote, o paciente sera informado, via WhatsApp, sobre o valor total a ser pago referente as sessoes previstas para aquele mes.', 3);
       y += 1;
       writeMixed('Reajuste:', 'O valor dos honorarios passara por reajuste anual, em conformidade com as diretrizes eticas e profissionais, com objetivo de garantir a manutencao da qualidade tecnica dos servicos.', 3);
       y += 1;
